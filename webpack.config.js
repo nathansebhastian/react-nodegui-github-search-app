@@ -1,12 +1,11 @@
 const path = require("path");
 const webpack = require("webpack");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = (env, argv) => {
   const config = {
     mode: "production",
-    entry: ["./src/index.tsx"],
+    entry: ["./src/index.jsx"],
     target: "node",
     output: {
       path: path.resolve(__dirname, "dist"),
@@ -15,7 +14,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(j|t)sx?$/,
+          test: /\.jsx?$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
@@ -44,14 +43,13 @@ module.exports = (env, argv) => {
     },
     plugins: [new CleanWebpackPlugin()],
     resolve: {
-      extensions: [".tsx", ".ts", ".js", ".jsx", ".json"]
+      extensions: [".ts", ".js", ".jsx", ".json"]
     }
   };
 
   if (argv.mode === "development") {
     config.mode = "development";
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
-    config.plugins.push(new ForkTsCheckerWebpackPlugin());
     config.devtool = "source-map";
     config.watch = true;
     config.entry.unshift("webpack/hot/poll?100");
