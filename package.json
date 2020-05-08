@@ -4,7 +4,6 @@
   "main": "index.js",
   "author": "Nathan Sebhastian <nathansebhastian@gmail.com>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "build": "webpack -p",
     "dev": "webpack --mode=development",
@@ -14,8 +13,6 @@
   "dependencies": {
     "@nodegui/nodegui": "^0.16.1",
     "@nodegui/react-nodegui": "^0.5.0",
-    "axios": "^0.19.2",
-    "open": "^7.0.3",
     "react": "^16.13.0"
   },
   "devDependencies": {
